@@ -1,0 +1,80 @@
+package numbersortinghomework;
+import java.util.Scanner;
+
+public class Numbersortinghomework {
+
+    
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("please enter your 10 numbers by entering one then entering then repeating with the other 9");
+        int firstNum = input.nextInt();
+        int secondNum = input.nextInt();
+        int thirdNum = input.nextInt();
+        int fourthNum = input.nextInt();
+        int fifthNum = input.nextInt();
+        int sixthNum = input.nextInt();
+        int seventhNum = input.nextInt();
+        int eighthNum = input.nextInt();
+        int ninthNum = input.nextInt();
+        int tenthNum = input.nextInt();
+        int sorting = 0;
+        
+        while (sorting <10){
+            
+            if (firstNum>secondNum){
+                int a = firstNum;
+                firstNum=secondNum;
+                secondNum=a;
+            }
+            if (secondNum>thirdNum){
+                int b = secondNum;
+                secondNum=thirdNum;
+                thirdNum = b;
+            }
+            if (thirdNum>fourthNum){
+                int c = thirdNum;
+                thirdNum=fourthNum;
+                fourthNum = c;
+            }                      
+            if (fourthNum>fifthNum){
+                int d = fourthNum;
+                fourthNum=fifthNum;
+                fifthNum = d;
+            }
+            if (fifthNum>sixthNum){
+                int e = fifthNum;
+                fifthNum=sixthNum;
+                sixthNum = e;
+            }
+            if (sixthNum>seventhNum){
+                int f = sixthNum;
+                sixthNum=seventhNum;
+                seventhNum = f;
+            }
+            if (seventhNum>eighthNum){
+                int g = seventhNum;
+                seventhNum=eighthNum;
+                eighthNum = g;
+            }
+            if (eighthNum>ninthNum){
+                int h = eighthNum;
+                eighthNum=ninthNum;
+                ninthNum = h;
+            }
+            if (ninthNum>tenthNum){
+                int g = ninthNum;
+                ninthNum=tenthNum;
+                tenthNum = g;
+            }
+            sorting=sorting+1;
+            
+        }
+        System.out.println(firstNum + "  "+secondNum+"   "+thirdNum+"  "+fourthNum+"  "+fifthNum+"  "+sixthNum+"  "+seventhNum+"  "+eighthNum+"  "+ninthNum+"  "+tenthNum);
+        System.out.println("the minimum number is "+firstNum);
+        System.out.println("the maximum number is "+tenthNum);
+        int average = ((firstNum +secondNum+thirdNum+fourthNum+fifthNum+sixthNum+seventhNum+eighthNum+ninthNum+tenthNum)/10);
+        System.out.println("the average number is "+average);
+                 
+    }
+    
+}
