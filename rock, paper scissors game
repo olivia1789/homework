@@ -1,0 +1,163 @@
+package rockpaperscissorsgamehomework;
+
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class Rockpaperscissorsgamehomework {
+
+    private static Scanner input = new Scanner(System.in);
+    private static Random random = new Random();
+    
+    public static void beginGame(){          
+        System.out.println("welcome to a game of rock paper scissors. Would you like to play ");
+        String play = input.nextLine();
+        while (play.equals("yes")){
+            game();            
+            int differenceScore = (computerScore-playerScore);
+            if (differenceScore>=2){
+                bonusRound();                
+            }
+            System.out.println("\nPlayer's current score is "+ playerScore);
+            System.out.println("Computer's current score is "+computerScore);
+            System.out.println("\nWould you like to play again");
+            String playAgain = input.nextLine();
+            if (playAgain.equals("yes")){
+                play = ("yes");
+            }else{
+                play = ("no");
+            }
+        }
+    }
+    private static int playerScore=0;
+    private static int computerScore=0;
+    public static void game(){                    
+        System.out.println("Pick rock, paper or scissors");
+        String choice = input.nextLine();
+        int computerChoice = random.nextInt(3);//0=rock  1=scissors  2=paper
+        if (choice.equals("scissors")){
+            if (computerChoice==0){
+                System.out.println("Rock beats scissors \nComputer wins");
+                computerScore=(computerScore+1);
+            }if(computerChoice==1){
+                System.out.println("Both scissors \nDraw");
+            }if(computerChoice==2){
+                System.out.println("Scissors beats paper \nPlayer wins");
+                playerScore=(playerScore+1);
+            }
+        }
+        if (choice.equals("paper")){
+            if (computerChoice==0){
+                System.out.println("Paper beats rock \nPlayer wins");
+                playerScore=(playerScore+1);
+            }if(computerChoice==1){
+                System.out.println("Scissors beats paper \nComputer wins");
+                computerScore=(computerScore+1);
+            }if(computerChoice==2){
+                System.out.println("Both paper \nDraw");
+            }
+        }
+        if (choice.equals("rock")){
+            if (computerChoice==0){
+                System.out.println("Both rock \nDraw");
+            }if(computerChoice==1){
+                System.out.println("Rock beats scissors \nPlayer wins");
+                playerScore=(playerScore+1);
+            }if(computerChoice==2){
+                System.out.println("Paper beats rock \nComputer wins");
+                computerScore=(computerScore+1);
+            }
+        }
+        if (!choice.equals("rock")){
+            if (!choice.equals("scissors")){
+                if (!choice.equals("paper")){
+                    System.out.println("\nThat is not a valid entry");
+                }
+            }
+        }
+       
+    } 
+    public static void bonusRound(){
+        System.out.println("Uh oh your falling behind and the computer is in the lead by 5 wins");
+        System.out.println("This is the bonus round it will give you the chance to choose a wave which will beat both scissors and paper but not rocks.");
+        System.out.println("If you win using the wave it will remove 5 of the computers wins making you have equal wins");
+        System.out.println("But be careful the computer can also choose wave and beat you");
+        System.out.println("Would you like to play the bonus round?");
+        String bonusGame = input.nextLine();
+        if (bonusGame.equals("yes")){
+            System.out.println("Pick rock, paper scissors or wave");
+            String choice = input.nextLine();
+            int computerChoice = random.nextInt(4);//0=rock  1=scissors  2=paper 3=wave
+            if (choice.equals("scissors")){
+                if (computerChoice==0){
+                    System.out.println("Rock beats scissors \nComputer wins");
+                    computerScore=(computerScore+1);
+                }if(computerChoice==1){
+                    System.out.println("Both scissors \nDraw");
+                }if(computerChoice==2){
+                    System.out.println("Scissors beats paper \nPlayer wins");
+                    playerScore=(playerScore+1);
+                }if(computerChoice==3){
+                    System.out.println("Wave beats scissors \nComputer wins");
+                    playerScore=(playerScore-5);
+                }
+            }
+            if (choice.equals("paper")){
+                if (computerChoice==0){
+                    System.out.println("Paper beats rock \nPlayer wins");
+                    playerScore=(playerScore+1);
+                }if(computerChoice==1){
+                    System.out.println("Scissors beats paper \nComputer wins");
+                    computerScore=(computerScore+1);
+                }if(computerChoice==2){
+                    System.out.println("Both paper \nDraw");
+                }if(computerChoice==3){
+                    System.out.println("Wave beats paper \nComputer wins");
+                    playerScore=(playerScore-5);
+                }
+            }
+            if (choice.equals("rock")){
+                if (computerChoice==0){
+                    System.out.println("Both rock \nDraw");
+                }if(computerChoice==1){
+                    System.out.println("Rock beats scissors \nPlayer wins");
+                    playerScore=(playerScore+1);
+                }if(computerChoice==2){
+                    System.out.println("Paper beats rock \nComputer wins");
+                    computerScore=(computerScore+1);
+                }if(computerChoice==3){
+                    System.out.println("Rock beats wave \nPlayer wins");
+                    playerScore=(playerScore+1);
+                }
+            }
+            if (choice.equals("wave")){
+                if (computerChoice==0){
+                    System.out.println("Rock beats wave \nComputer wins");
+                    computerScore=(computerScore+1);
+                }if(computerChoice==1){
+                    System.out.println("Wave beats scissors \nPlayer wins");
+                    computerScore=(computerScore-5);
+                }if(computerChoice==2){
+                    System.out.println("Wave beats paper \nPlayer wins");
+                    computerScore=(computerScore-5);
+                }if(computerChoice==3){
+                    System.out.println("Wave council each other out \nDraw");
+                }
+            }
+            if (!choice.equals("rock")){
+                if (!choice.equals("scissors")){
+                    if (!choice.equals("paper")){
+                        if (!choice.equals("wave")){
+                            System.out.println("\nThat is not a valid entry");                            
+                        }                        
+                    }
+                }
+            
+            }
+        }
+    }
+    public static void main(String[] args) {
+        beginGame();
+        
+    }
+}
