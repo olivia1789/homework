@@ -1,0 +1,145 @@
+package adarkroomgamehomework;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class AdarkroomgameHomework {
+    private static Random random = new Random();
+    private static Scanner input = new Scanner(System.in);
+        
+    private static int wood = 5;
+    private static int fur = 0;
+    private static int teeth = 0;
+    private static int meat = 0;
+    private static int hut = 0;
+    private static int trap = 0;
+    private static int tannery = 0;
+    private static int leather = 0;
+    
+    public static void main(String[] args) {
+        System.out.println("your in a dark cold room, theres a lady in the corner she seems cold ");
+        System.out.println("Would you like to add wood to fire");
+        String firstWood = input.nextLine();
+        if (firstWood.equals("yes")){
+            wood = (wood-1);
+            System.out.println("fire is roaring");
+            System.out.println("the woman in the corner comes towards the fire, shes a builder and offers to build things for you if you have enough materials");
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("Would you like to add wood to fire");
+            String addWood = input.nextLine();
+            if (addWood.equals("yes")){
+                wood = (wood-1);
+                System.out.println("fire is roaring");            
+            }System.out.println("wood= "+wood +" fur= "+fur+" teeth= "+teeth+" meat= "+meat+" traps= "+trap+" huts= "+hut+" tannery= "+tannery+" leather= "+leather);
+            gatherWood();
+            System.out.println("wood= "+wood +" fur= "+fur+" teeth= "+teeth+" meat= "+meat+" traps= "+trap+" huts= "+hut+" tannery= "+tannery+" leather= "+leather);
+            buildTrap();
+            System.out.println("wood= "+wood +" fur= "+fur+" teeth= "+teeth+" meat= "+meat+" traps= "+trap+" huts= "+hut+" tannery= "+tannery+" leather= "+leather);
+            checkTraps();            
+            System.out.println("wood= "+wood +" fur= "+fur+" teeth= "+teeth+" meat= "+meat+" traps= "+trap+" huts= "+hut+" tannery= "+tannery+" leather= "+leather);
+            huts();
+            System.out.println("wood= "+wood +" fur= "+fur+" teeth= "+teeth+" meat= "+meat+" traps= "+trap+" huts= "+hut+" tannery= "+tannery+" leather= "+leather);
+            buildtannery();
+            if (tannery>0){
+                System.out.println("wood= "+wood +" fur= "+fur+" teeth= "+teeth+" meat= "+meat+" traps= "+trap+" huts= "+hut+" tannery= "+tannery+" leather= "+leather);
+                tannery();
+                System.out.println("wood= "+wood +" fur= "+fur+" teeth= "+teeth+" meat= "+meat+" traps= "+trap+" huts= "+hut+" tannery= "+tannery+" leather= "+leather);
+            }
+            
+        }
+    }
+    }
+    public static void gatherWood(){
+        System.out.println("Would you like to gather wood");
+        String gatherwood = input.nextLine();
+        if (gatherwood.equals("yes")){
+            int woodGathered=0;
+            while (hut>=woodGathered){
+                wood = (wood+5);  
+                woodGathered=(woodGathered+1);
+            }
+        }
+    }
+    public static void buildTrap(){        
+        System.out.println("Would you like to build a trap");
+        String buildTrap = input.nextLine();
+        int trapprice = 10;
+        if (buildTrap.equals("yes")){ 
+            if (wood>trapprice){
+                wood = (wood-trapprice);
+                trap =(trap+1);  
+                trapprice=(trapprice+10);
+            }else{
+                System.out.println("not enough wood to build trap");
+            }            
+        }
+    }
+    public static void checkTraps(){
+        if (trap>0){
+            System.out.println("Would you like to check traps");
+            String checkTraps = input.nextLine();
+        
+                if (checkTraps.equals("yes")){
+                int checkedTraps = 0;
+                while (checkedTraps<trap){
+                    fur = (fur + random.nextInt(4));
+                    teeth = (fur + random.nextInt(3));
+                    meat = (meat + random.nextInt(2));
+                    checkedTraps = (checkedTraps+1);
+                }
+            }            
+        }else{
+            System.out.println("You have built no traps");
+        }
+    }
+    public static void huts(){
+        System.out.println("Would you like to build a hut");
+        String buildhuts = input.nextLine();
+        int hutprice=(20);
+        if (buildhuts.equals("yes")){
+            if (wood>hutprice){
+                wood=(wood-hutprice);
+                hut=(hut+1);
+                hutprice=(hutprice+20);
+            }else{
+                System.out.println("not enough wood to build hut");
+            }
+        }
+    }
+    public static void buildtannery(){
+        if (hut>4){            
+            System.out.println("Would you like to build a tannery");
+            String buildtannery = input.nextLine();
+            int tannerywoodPrice=100;
+            int tanneryfurPrice=50;
+            if (buildtannery.equals("yes")){
+                if (wood>100){
+                    if (fur>50){
+                        wood=(wood-tannerywoodPrice);
+                        fur=(fur-tanneryfurPrice); 
+                        tannery = (tannery+1);
+                    }else{
+                        System.out.println("Not enough fur");
+                    }
+                }else{
+                    System.out.println("not enough wood or fur");
+                }
+            }
+        }
+    }
+    public static void tannery(){
+        if (tannery>0){
+            for (int i = 0; i < tannery; i++) {
+                System.out.println("would you like to make some leather");
+            String makeLeather = input.nextLine();
+            if (makeLeather.equals("yes")){
+                wood=(wood-5);
+                meat=(meat-2);
+                fur=(fur-7);
+                leather=(leather+3);
+            }
+            }
+            
+        }
+    }
+}
