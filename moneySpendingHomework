@@ -1,0 +1,74 @@
+package moneyusagehomework;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class MoneyUsageHomework {
+
+    
+public static ArrayList<String> textItems = new ArrayList<>();
+    public static String folderDirectory;
+    public static void main(String[] args) {
+        getDir();
+        System.out.println("Your current file path is:" + folderDirectory);
+        writeFile();
+        readFile();
+        printItems();
+    }
+   
+    public static void getDir(){
+        folderDirectory = System.getProperty("user.dir")+ "\\myText.txt";
+    }
+   
+    public static void writeFile(){
+        Scanner input = new Scanner(System.in);
+        System.out.println("This code allows you to input all your money spending and tells you what percentage of your income you spent on what");
+        System.out.println("what is your monthly income");
+        int income = input.nextInt();
+        System.out.println("did you spend money on something else");
+        String spending = input.nextLine();
+        if (spending.equals("yes")){
+            System.out.println("what did you spend money on?");
+            String myStr = input.nextLine();
+            System.out.println("how much money did you spend on "+myStr);
+            int spent = input.nextInt();
+            int percentage = (spent/income)*100;
+            String percentages = Integer.toString(percentage) ;
+            try {
+                FileWriter writeToFile = new FileWriter(folderDirectory, true); // true makes name add on to text file not replace it
+                PrintWriter printToFile = new PrintWriter(writeToFile);
+                printToFile.println(myStr + percentages);
+                printToFile.close();
+                writeToFile.close();
+            } catch (Exception e) {
+                System.out.println("Error: " + e);
+
+            }
+        }
+        
+       
+        
+    }
+    public static void readFile(){
+        String inputLine;
+        try{
+            BufferedReader read = new BufferedReader(new FileReader(folderDirectory));
+            while ((inputLine = read.readLine()) !=null){
+                textItems.add(inputLine);
+            }
+            read.close();
+        } catch (Exception e){
+            System.out.println("Error: "+e);
+        }
+    }
+    public static void printItems(){
+        for (int i = 0; i < textItems.size(); i++) {
+            System.out.println(textItems.get(i));            
+        }
+    }
+}
