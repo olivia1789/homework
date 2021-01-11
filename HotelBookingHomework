@@ -1,0 +1,177 @@
+package hotelbookinghomework;
+
+import java.util.Scanner;
+
+
+public class HotelBookingHomework {
+
+    private static Scanner input = new Scanner(System.in);
+    private static int days = 0;
+    private static int price = 0;
+    private static int discountDays = (days-7);
+    private static int discountPrice = 0;
+    private static String room = " ";
+    private static String board = " ";
+    
+    public static void main(String[] args) {
+        
+        System.out.println("Welcome to Quarantine Hotel  "
+                + "\nIf you stay with us for longer than 7 days "
+                + " you get 20% of the daily rate for each day after the initial week"
+                + "\nHow many days will you be staying with us?");
+        days = input.nextInt();
+        Room();
+        Board();
+        System.out.println("\n\nYour total price is: " +price);
+        if (days>7){
+            discountroom();
+            discountboard();
+            discountedprice();
+            System.out.println("\nYour total price with our discount is: "+discountPrice);
+        }
+                       
+    }
+    public static void Room(){
+        System.out.println("What size room would you like whilst staying with us? \n"
+                + "Our room prices are: \n "
+                + "Single room: £50 \n Double room: £75 \n Family room: £105 ");
+        input.nextLine();//to stop it skipping lines
+        room = input.nextLine();
+        if (room.equals("Single room")){
+            int roomPrice = (50*days);
+            price = (price+roomPrice);
+            System.out.println("Your room price is: "+roomPrice);
+        }
+        if (room.equals("Double room")){
+            int roomPrice = (75*days);
+            price = (price+roomPrice);
+            System.out.println("Your room price is: "+roomPrice);
+        }
+        if (room.equals("Family room")){
+            int roomPrice = (105*days);
+            price = (price+roomPrice);  
+            System.out.println("Your room price is: "+roomPrice);
+        }
+               
+    }
+    
+    
+    public static void Board(){
+        System.out.println("\n\nWhat kind of board would you like whilst your staying with us? \n"
+                + "Our board prices are: \n "
+                + "Self-Catering: £0 \n Half-Board: £10 \n Full Board: £20 ");
+        board = input.nextLine();
+        if (board.equals("Self-Catering")){
+            int boardPrice = 0*days;
+            price = (price+boardPrice);
+            System.out.println("Your board price is: "+boardPrice);
+        }
+        if (board.equals("Half-Board")){
+            int boardPrice = 10*days;
+            price = (price+boardPrice);
+            System.out.println("Your board price is: "+boardPrice);
+        }
+        if (board.equals("Full Board")){
+            int boardPrice = 20*days;
+            price = (price+boardPrice);
+            System.out.println("Your board price is: "+boardPrice);
+        }
+        
+        
+    }
+    public static void discountroom(){  //the room price for a week      
+        if (room.equals("Single room")){
+            int roomPrice = (50*7);
+            discountPrice = (discountPrice+roomPrice);
+            
+        }
+        if (room.equals("Double room")){
+            int roomPrice = (75*7);
+            discountPrice = (discountPrice+roomPrice);
+            
+        }
+        if (room.equals("Family room")){
+            int roomPrice = (105*7);
+            discountPrice = (discountPrice+roomPrice);  
+            
+        }
+       
+    
+}
+    public static void discountboard(){ //the board price for a week
+        if (board.equals("Self-Catering")){
+            int boardPrice = 0*7;
+            discountPrice = (discountPrice+boardPrice);
+            
+        }
+        if (board.equals("Half-Board")){
+            int boardPrice = 10*7;
+            discountPrice = (discountPrice+boardPrice);
+            
+        }
+        if (board.equals("Full Board")){
+            int boardPrice = 20*7;
+            discountPrice = (discountPrice+boardPrice);
+            
+        }
+    }
+    
+    //discount prices
+    public static void discountedprice(){ //discounted price for a singular day
+        int discountday = 0;
+        if (room.equals("Single room")){
+            if (board.equals("Self-Catering")){
+                discountday=(50+0)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+            if (board.equals("Half-Board")){
+                discountday=(50+10)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+            if (board.equals("Full Board")){
+                discountday=(50+20)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+        }
+        
+        if (room.equals("Double room")){
+            if (board.equals("Self-Catering")){
+                discountday=(75+0)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+            if (board.equals("Half-Board")){
+                discountday=(75+10)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+            if (board.equals("Full Board")){
+                discountday=(75+20)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+        }
+        if (room.equals("Family room")){
+            if (board.equals("Self-Catering")){
+                discountday=(105+0)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+            if (board.equals("Half-Board")){
+                discountday=(105+10)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+            if (board.equals("Full Board")){
+                discountday=(105+20)/5;
+                discountday=(discountday*discountDays);
+                discountPrice=discountPrice+discountday;
+            }
+        }
+    }
+    
+}
+
