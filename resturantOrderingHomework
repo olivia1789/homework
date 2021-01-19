@@ -1,0 +1,144 @@
+package resturantorderhomework;
+
+import java.util.Scanner;
+
+
+public class ResturantOrderHomework {
+    
+    public static double price = 0;
+    public static Scanner input = new Scanner(System.in);
+    public static void main(String[] args) {
+        System.out.println("Welcome to reigate homework "
+                + "\nThis is our drinks menu");
+        DrinkMenu();
+        DrinkOrder();
+        System.out.println("\nOkay, and this is our main menu");
+        menu();
+        Order();
+        System.out.println("Enjoy your meal"
+                + "\nYour Receit is: £"+price);
+        
+    }
+    public static void menu(){
+        System.out.println("\nPizza-£7.59 "
+                + "\nSteak, peas and potatoes-£9.84"
+                + "\nHam and Cheese sandwich-£5.32"
+                + "\nGamon and potato dauphiniose-£7.89"
+                + "\nFish pie and pea salad-£7.56"
+                + "\nBurger and chips with salad-£6.48 ");
+        
+    }
+    public static void DrinkMenu(){
+        System.out.println("\nCoke-£1.00"
+                + "\nFanta-£1.00"
+                + "\nAppletiser-£1.00"
+                + "\nRed Wine-£3.70"
+                + "\nWhite Wine-£3.80"
+                + "\nBeer-£2.90");
+    }
+    public static void Order(){
+        System.out.println("\nAre you ready to order?");
+        String ready = input.nextLine();
+        while (ready.equals("yes")){
+            Price();
+            System.out.println("Anything else?");
+            ready = input.nextLine();
+        }
+    }
+    public static void DrinkOrder(){
+        System.out.println("\nAre you ready to order?");
+        String ready = input.nextLine();
+        while (ready.equals("yes")){
+            DrinkPrice();
+            System.out.println("Anything else?");
+            ready = input.nextLine();
+        }
+        
+    }
+    public static void Price(){
+        
+        double pizza = 7.59;
+        double steak = 9.84;
+        double sandwich = 5.32;
+        double gamon = 7.89;
+        double pie = 7.56;
+        double burger = 6.48;
+        
+        double coke = 1.00;
+        double fanta = 1;
+        double appletiser = 1;
+        double redWine = 3.70;
+        double whiteWine = 3.80;
+        double beer = 2.90;
+        
+        System.out.println("What would you like to order?");
+        String order = input.nextLine();
+        if (order.equals("Pizza")){
+            price=price+pizza;
+        }
+        if (order.equals("Steak, peas and potatoes")){
+            price=price+steak;
+        }
+        if (order.equals("Ham and Cheese sandwich")){
+            price=price+sandwich;
+        }
+        if (order.equals("Gamon and potato dauphiniose")){
+            price=price+gamon;
+        }
+        if (order.equals("Fish pie and pea salad")){
+            price=price+pie;
+        }
+        if (order.equals("Burger and chips with salad")){
+            price=price+burger;
+        }
+        if (order.equals("Coke")){
+            price=price+coke;
+        }
+        if (order.equals("Fanta")){
+            price=price+fanta;
+        }
+        if (order.equals("Appletiser")){
+            price=price+appletiser;
+        }
+        if (order.equals("Red Wine")){
+            price=price+redWine;
+        }
+        if (order.equals("White Wine")){
+            price=price+whiteWine;
+        }
+        if (order.equals("Beer")){
+            price=price+beer;
+        }
+                
+                
+    }
+    public static void DrinkPrice(){
+        double coke = 1.00;
+        double fanta = 1;
+        double appletiser = 1;
+        double redWine = 3.70;
+        double whiteWine = 3.80;
+        double beer = 2.90;
+        
+        System.out.println("What drinks would you like to order?");
+        String order = input.nextLine();
+        if (order.equals("Coke")){
+            price=price+coke;
+        }
+        if (order.equals("Fanta")){
+            price=price+fanta;
+        }
+        if (order.equals("Appletiser")){
+            price=price+appletiser;
+        }
+        if (order.equals("Red Wine")){
+            price=price+redWine;
+        }
+        if (order.equals("White Wine")){
+            price=price+whiteWine;
+        }
+        if (order.equals("Beer")){
+            price=price+beer;
+        }
+    }
+}
