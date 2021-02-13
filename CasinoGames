@@ -1,0 +1,124 @@
+package casinogamehomework;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class CasinoGameHomework {
+
+    public static Scanner input = new Scanner(System.in);
+    public static Random random = new Random();
+
+    public static String displayName;
+    public static int money;
+
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println("Welocme to reigate casino, enjoy your stay");
+        register();
+        Roulette();
+        SlotMachine();
+
+    }
+
+    public static void register() {
+        System.out.println("\nWhat is your full name e.g Anna Brown");
+        String fullName = input.nextLine();
+
+        System.out.println("Please enter your email e.g annaB4@gmail.com");
+        String email = input.nextLine();
+        if (!email.contains("@")) {
+            email = "invalid";
+        }
+        if (!email.contains(".")) {
+            email = "invalid";
+        }
+        while (email.equals("invalid")) {
+            System.out.println("Email is invalid please try again");
+            email = input.nextLine();
+            if (!email.contains("@")) {
+                email = "invalid";
+            }
+            if (!email.contains(".")) {
+                email = "invalid";
+            }
+        }
+        System.out.println("Please enter a password for account");
+        String password = input.nextLine();
+        System.out.println("Confirm Password");
+        String confirmedPassword = input.nextLine();
+        while (!password.equals(confirmedPassword)) {
+            System.out.println("Passwords do not match \nTry entering password again");
+            password = input.nextLine();
+            System.out.println("Confirm Password");
+            confirmedPassword = input.nextLine();
+        }
+
+        System.out.println("what would you like your display name to be?");
+        displayName = input.nextLine();
+
+        System.out.println("How much money are you starting at?");
+        money = input.nextInt();
+        System.out.println(displayName + " has £" + money);
+    }
+
+    public static void Roulette() throws InterruptedException {
+        System.out.println("\nWelcome to a new game of Roulette \nIt's time to place your bet");
+        int betMoney = input.nextInt();
+        if (betMoney < money) {
+            System.out.println("What number are you betting on? 0 to 36 ");
+            int betNumber = input.nextInt();
+            while (-1 > betNumber) {
+                System.out.println("invalid number betted on \nRember the number has to be between o and 36 try again");
+                betNumber = input.nextInt();
+            }
+            while (36 < betNumber) {
+                System.out.println("invalid number betted on \nRember the number has to be between o and 36 try again");
+                betNumber = input.nextInt();
+            }
+            System.out.println("Bets placed, time to spin wheel");
+            int rouletteNumber = random.nextInt(36);
+            Thread.sleep(3000); //sleep for 3 seconds
+            System.out.println("Number " + rouletteNumber);
+            if (betNumber == rouletteNumber) {
+                System.out.println("Congratualations you WON");
+                money = (money + betMoney);
+            } else {
+                System.out.println("you lost");
+                money = (money - betMoney);
+            }
+
+        } else {
+            System.out.println("not enough money to place bet");
+        }
+
+    }
+
+    public static void SlotMachine() throws InterruptedException {
+        System.out.println("Welcome to the slot machine how much are you betting?");
+        int betMoney = input.nextInt();
+        if (betMoney < money) {
+            System.out.println("Enter spin when ready");
+            input.nextLine();
+            String spin = input.nextLine();
+            if (spin.equals("spin")) {
+                int columnOne = random.nextInt(9);
+                int columnTwo = random.nextInt(9);
+                int columnThree = random.nextInt(9);
+                Thread.sleep(2000);
+                System.out.println("[" + columnOne + "] [" + columnTwo + "] [" + columnThree + "]");
+                if (columnOne == columnTwo) {
+                    if (columnOne == columnThree) {
+                        System.out.println("Congratulations you WON JACKPOT on " + columnOne);
+                        int jackpot = (betMoney * (columnOne + 1) * 5);
+                        System.out.println("£" + jackpot);
+                        money = (money + (jackpot));
+                    }
+                } else {
+                    System.out.println("No jackpot better luck next time");
+                }
+            }
+        } else {
+            System.out.println("Not enough money to place bet");
+        }
+    }
+
+}
