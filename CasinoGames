@@ -13,9 +13,37 @@ public class CasinoGameHomework {
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Welocme to reigate casino, enjoy your stay");
+        System.out.println("You must register before playing the games");
         register();
-        Roulette();
-        SlotMachine();
+        while (true){
+            System.out.println("\nWhat would you like to do?"
+                    + "\n1- Play Roulette"
+                    + "\n2- Play Slot Machine"
+                    + "\n3- Blackjack"
+                    + "\n4- Money"
+                    + "\n0- Exit");
+            int userChoice = input.nextInt();
+            
+            switch (userChoice){
+                case 1:
+                    Roulette();
+                    break;
+                case 2:
+                    SlotMachine();
+                    break;
+                case 3:
+                    BlackJack();   
+                    break;
+                case 4:
+                    Money();
+                    break;
+                case 0:
+                    System.out.println("We hope you enjoyed your stay, your leaving with £"+money);
+                    System.exit(0);
+            }
+        }
+             
+               
 
     }
 
@@ -93,7 +121,7 @@ public class CasinoGameHomework {
     }
 
     public static void SlotMachine() throws InterruptedException {
-        System.out.println("Welcome to the slot machine how much are you betting?");
+        System.out.println("\nWelcome to the slot machine how much are you betting?");
         int betMoney = input.nextInt();
         if (betMoney < money) {
             System.out.println("Enter spin when ready");
@@ -120,5 +148,87 @@ public class CasinoGameHomework {
             System.out.println("Not enough money to place bet");
         }
     }
+  
+    
+    
+    public static void Money(){
+        System.out.println("\nYou currently have £"+money);
+        System.out.println("Would you like to add any money?");
+        input.nextLine();
+        String addMoney = input.nextLine();        
+        if (addMoney.equals("yes")){
+            System.out.println("How much?");
+            int moneyAdded = input.nextInt();
+            money = (money+moneyAdded);
+            System.out.println("you now have £"+money+" to play with");
+        }
+    }    
+    
+    
+    public static void BlackJack(){
+        System.out.println("\nWelcome to Blackjack\nIn this version please note ace means 11 only \nPlace your bet");
+        int bet = input.nextInt();
+        if (bet < money) {
+            String[] cardsFace = {"Ace", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+            int[] cardsNum = {11, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10};
+            int dealerFirstCard = random.nextInt(13);
+            int userFirstCard = random.nextInt(13);
+            int dealerSecondCard = random.nextInt(13);
+            int userSecondCard = random.nextInt(13);
+            System.out.println("\nThe dealer has placed his first card");
+            System.out.println("Your first card is " + cardsFace[userFirstCard]);
+            System.out.println("The dealers second card is " + cardsFace[dealerSecondCard]);
+            System.out.println("Your second card is " + cardsFace[userSecondCard]);
+            int dealersSet = (cardsNum[dealerFirstCard] + cardsNum[dealerSecondCard]);
+            int userSet = (cardsNum[userFirstCard] + cardsNum[userSecondCard]);
+            if (userSet == 21) {
+                int winnings = (bet * 3);
+                System.out.println("\nCongrats " + displayName + " got BlackJack \nWinnings is £" + winnings + "\nThank you for playing");
+                money = (money + winnings);
+            } else {
+                System.out.println("\nWould you like to hit or stand?");
+                input.nextLine();
+                String userChoice = input.nextLine();
+                while (userChoice.equals("hit")) {
+                    int userNextCard = random.nextInt(13);
+                    System.out.println("Your new card is " + cardsFace[userNextCard]);
+                    userSet = (userSet + cardsNum[userNextCard]);
+                    if (userSet <= 21) {
+                        if (userSet == 21) {
+                            int winnings = (bet * 2);
+                            System.out.println("Congrats " + displayName + " got BlackJack \nWinnings is £" + winnings + "\nThank you for playing");
+                            money = (money + winnings);
+                            break;
+                        } else {
+                            System.out.println("What would you like to do next: hit or stand?");
+                            userChoice = input.nextLine();
+                        }
+                    } else {
 
+                        System.out.println("Bust\nBetter luck next time");
+                        money = (money - bet);
+                        break;
+                    }
+
+                }
+                if (userChoice.equals("stand")) {
+                    if (userSet > dealersSet) {
+                        int winnings = (bet * 2);
+                        System.out.println("Dealers first card was " + cardsFace[dealerFirstCard] + ""
+                                + "\nUsers set of " + userSet + " beats dealers set of " + dealersSet + ""
+                                + "\n" + displayName + " wins £" + winnings);
+                        money = (money + winnings);
+                    } else {
+                        System.out.println("Dealers first card was " + cardsFace[dealerFirstCard] + ""
+                                + "\nDealers set of " + dealersSet + " beats users set of " + userSet + ""
+                                + displayName + " loses\nBetter luck next time");
+                        money = (money - bet);
+                    }
+
+                }
+            }
+        } else {
+            System.out.println("Not enough money to place bet");
+        }
+    }
 }
